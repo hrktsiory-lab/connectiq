@@ -22,5 +22,7 @@ CREATE TABLE IF NOT EXISTS interventions (
 
 -- Données de départ
 INSERT INTO machines (id, nom, systeme_exploitation, ram, espace_disque, adresse_ip, utilisateur_responsable)
-VALUES (1, 'PC-Francisco', 'Windows 10 Pro', '16 Go', '512 Go SSD', '192.168.3.43', 'Francisco')
+VALUES 
+    (1, 'PC-Francisco', 'Windows 10 Pro', '16 Go', '512 Go SSD', '192.168.3.43', 'Francisco'),
+    (2, 'PC-CANISFAUCON', 'Parrot Security 7.4', '11 Go', '106 Go', '192.168.3.43', 'canisfaucon')
 ON DUPLICATE KEY UPDATE nom=VALUES(nom);
