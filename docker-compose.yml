@@ -1,0 +1,10 @@
+
+services:
+  web-portail:
+    image: nginx:alpine-perl
+    container_name: connectiq-portal
+    ports:
+      - "80:80"
+    volumes:
+      - ./portail:/usr/share/nginx/html:ro
+    restart: unless-stopped
