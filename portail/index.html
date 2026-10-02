@@ -3,172 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet ConnectiQ / DOKODE - Portail</title>
+    <title>Projet ConnectiQ / DOKODE - Tableau de bord</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --border-color: #334155;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --item-bg: #111827;
- }
+            --bg-color: #1C1C1E;
+            --surface: #252528;
+            --surface-hover: #2e2e33;
+            --border: rgba(240, 230, 200, 0.12);
+            --border-hover: rgba(240, 230, 200, 0.35);
+            
+            /* Palette harmonieuse basée sur #F0E6C8 */
+            --text-title: #F0E6C8;        /* Crème lumineux pour les titres */
+            --text-main: #E2D9BC;         /* Crème doux pour le texte courant */
+            --text-muted: #A39B80;        /* Ton grège/sable pour les descriptions */
+            --accent: #F0E6C8;            /* Couleur d'accentuation principale */
+            --badge-bg: rgba(240, 230, 200, 0.06);
+            --badge-text: #D8CEAF;        /* Teinte chaleureuse pour les adresses */
+        }
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 3rem 1rem;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
+            padding: 2.5rem 1rem;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             width: 100%;
         }
 
+        /* En-tête */
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         h1 {
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.025em;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.03em;
+            color: var(--text-title);
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            margin: 0;
         }
 
+        /* Cartes de sections */
         .card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
         }
 
         h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
             margin-top: 0;
-            font-size: 1.25rem;
-            color: var(--text-main);
-            font-weight: 700;
             margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
         }
 
-        /* Composition de l'équipage */
+        /* Équipe */
         .team-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.6rem;
             padding: 0;
             margin: 0;
             list-style: none;
         }
 
         .team-member {
-            background-color: var(--item-bg);
+            background-color: var(--bg-color);
             color: var(--text-main);
             padding: 0.5rem 1rem;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
+            font-weight: 500;
+            border: 1px solid var(--border);
         }
 
-        /* Liste des services */
-        .services-list {
+        /* Liste des services (Rôles & Adresses) */
+        .services-table {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
-        .service-item {
+        .service-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 1.15rem 1.25rem;
-            background-color: var(--item-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            gap: 1rem;
-            transition: border-color 0.2s ease;
+            align-items: center;
+            background-color: var(--bg-color);
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
 
-        .service-item:hover {
-            border-color: var(--primary);
-        }
-
-        .service-info h3 {
-            margin: 0 0 0.25rem 0;
+        .service-meta h3 {
+            margin: 0 0 0.2rem 0;
             font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
+            font-weight: 600;
+            color: var(--text-title);
         }
 
-        .service-info p {
+        .service-meta p {
             margin: 0;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        /* Boutons */
-        .btn {
+        .service-addr {
+            font-family: monospace;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Boutons d'accès directs */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn-action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.25s ease;
+        }
+
+        .btn-action:hover {
+            background-color: var(--surface-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(240, 230, 200, 0.04);
+        }
+
+        .btn-action .title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-title);
+        }
+
+        .btn-action .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-action .link-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--badge-text);
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 0.55rem 1.1rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            cursor: pointer;
+            gap: 0.3rem;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-disabled {
-            background-color: #1e293b;
-            color: var(--text-muted);
-            cursor: default;
-            border: 1px solid var(--border-color);
-        }
- footer {
+        /* Pied de page */
+        footer {
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1.5rem;
+            margin-top: 2rem;
         }
 
-        @media (max-width: 640px) {
-            .service-item {
+        @media (max-width: 600px) {
+            .service-row {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-            .service-item .btn {
-                width: 100%;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -178,12 +218,12 @@
     <div class="container">
         <header>
             <h1>Projet ConnectiQ / DOKODE</h1>
-            <p class="subtitle">Portail centralisé et supervision des services</p>
+            <p class="subtitle">Infrastructure interne & Supervision des services</p>
         </header>
 
-        <!-- 1. Composition de l'équipage -->
+        <!-- 1. Nom du projet & Composition de l'équipe -->
         <section class="card">
-            <h2>Composition de l'équipage</h2>
+            <h2>Composition de l'équipe</h2>
             <ul class="team-grid">
                 <li class="team-member">canisfaucon</li>
                 <li class="team-member">Caleb-Leandrie</li>
@@ -194,50 +234,65 @@
             </ul>
         </section>
 
-        <!-- 2. Liste des services déployés -->
+        <!-- 2. Liste des services déployés (Rôles & Adresses) -->
         <section class="card">
-            <h2>Liste des services déployés</h2>
-            <div class="services-list">
-                <!-- Portail -->
-                <div class="service-item">
-                    <div class="service-info">
+            <h2>Services existants déployés</h2>
+            <div class="services-table">
+                <div class="service-row">
+                    <div class="service-meta">
                         <h3>Portail Web</h3>
-                        <p>Point d'entrée principal (192.168.3.43:80)</p>
+                        <p>Point d'entrée principal de l'infrastructure</p>
                     </div>
-                    <a href="http://192.168.3.43:80" class="btn btn-primary" target="_blank">Ouvrir le portail</a>
+                    <span class="service-addr">192.168.3.43:80</span>
                 </div>
 
-                <!-- Adminer -->
-                <div class="service-item">
-                    <div class="service-info">
+                <div class="service-row">
+                    <div class="service-meta">
                         <h3>Adminer</h3>
-                        <p>Interface de gestion de base de données (192.168.3.43:8081)</p>
+                        <p>Interface de gestion de base de données</p>
                     </div>
-                    <a href="http://192.168.3.43:8081" class="btn btn-primary" target="_blank">Accéder à Adminer</a>
+                    <span class="service-addr">192.168.3.43:8081</span>
                 </div>
 
-                <!-- Grafana -->
-                <div class="service-item">
-                    <div class="service-info">
+                <div class="service-row">
+                    <div class="service-meta">
                         <h3>Grafana</h3>
-                        <p>Supervision et tableaux de bord (192.168.3.43:3001)</p>
+                        <p>Supervision et tableaux de bord de métriques</p>
                     </div>
-                    <a href="http://192.168.3.43:3001" class="btn btn-primary" target="_blank">Accéder à Grafana</a>
+                    <span class="service-addr">192.168.3.43:3001</span>
                 </div>
 
-                <!-- MySQL -->
-                <div class="service-item">
-                    <div class="service-info">
+                <div class="service-row">
+                    <div class="service-meta">
                         <h3>MySQL</h3>
-                        <p>Base de données relationnelle (Port: 3307)</p>
+                        <p>Service de base de données relationnelle (Interne)</p>
                     </div>
-                    <span class="btn btn-disabled">Service Interne</span>
+                    <span class="service-addr">Port: 3307</span>
                 </div>
             </div>
         </section>
 
+        <!-- 3. Section dédiée avec boutons d'accès (Grafana & Adminer) -->
+        <section class="card">
+            <h2>Accès Rapides</h2>
+            <div class="actions-grid">
+                <a href="http://192.168.3.43:8081" class="btn-action" target="_blank">
+                    <span class="title">Adminer</span>
+                    <span class="desc">Gérer vos tables et bases MySQL</span>
+                    <span class="link-text">accès directement à Adminer</span>
+                </a>
+
+                <a href="http://192.168.3.43:3001" class="btn-action" target="_blank">
+                    <span class="title">Grafana</span>
+                    <span class="desc">Consulter les tableaux de bord avec supervision </span>
+                    <span class="link-text">accès directement à Grafana</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 4. Date de dernière mise à jour -->
         <footer>
-            <p>Dernière mise à jour : <span id="date-maj">Chargement...</span></p>
+            <p>Dernière mise à jour du document : <span id="date-maj">Chargement...</span></p>
         </footer>
     </div>
 
@@ -246,4 +301,3 @@
     </script>
 </body>
 </html>
-
