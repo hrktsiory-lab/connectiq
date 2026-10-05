@@ -3,9 +3,8 @@
 | Membre | Rôle principal | Tâches |
 |---|---|---|
 | canisfaucon | Serveur / coordination | Machine serveur, Docker, validation, fusion des PR |
-| Leandrie | Supervision | Grafana, tableau de bord, doc Grafana |
-| Benjamin | Supervision | Grafana, tableau de bord, doc Grafana |
-| Rachell | Base de données | Script SQL, import, persistance, doc MySQL |
-| Fransisco | Base de données | Script SQL, import, persistance, doc MySQL |
-| Tsiory | Web | Portail Nginx, Adminer |
-| À définir | Documentation | Installation, schéma, README, journal |
+| Caleb-Leandrie | Supervision | Grafana, tableau de bord, doc Grafana |
+| Benjamin | Base de données | Script SQL, import, Adminer, persistance, doc |
+| Fransisco | Base de données | Script SQL, import, Adminer, persistance, doc |
+| Rachell | Web | Portail Nginx, page d'accueil, doc Nginx |
+| Tsiory | Documentation | Installation, schéma, README, journal |
